@@ -129,6 +129,7 @@ const initialForm = {
 export default function App() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     const animatedElements = document.querySelectorAll(
@@ -156,25 +157,62 @@ export default function App() {
     setForm((current) => ({ ...current, [name]: value }));
   };
 
-  const submitForm = (event) => {
-    event.preventDefault();
 
+  const submitForm = async (event) => {
+    event.preventDefault();
+  
     const fname = form.fname.trim();
     const email = form.email.trim();
     const product = form.product;
     const quantity = form.quantity.trim();
-
+  
     if (!fname || !email || !product || !quantity) {
       window.alert('Please fill in your name, email, product and quantity to continue.');
       return;
     }
-
+  
     if (!/\S+@\S+\.\S+/.test(email)) {
       window.alert('Please enter a valid email address.');
       return;
     }
-
-    setSubmitted(true);
+  
+    setIsSending(true);
+  
+    try {
+      const response = await fetch('https://api.staticforms.dev/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          apiKey: import.meta.env.VITE_STATIC_FORMS_API_KEY,
+  
+          name: `${form.fname} ${form.lname}`.trim(),
+          firstName: form.fname,
+          lastName: form.lname,
+          email: form.email,
+          company: form.company,
+          product: form.product,
+          quantity: form.quantity,
+          occasion: form.occasion,
+          message: form.message,
+  
+          subject: `New Wedwow enquiry from ${form.fname}`,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Static Forms rejected the submission.');
+      }
+  
+      setSubmitted(true);
+      setForm(initialForm);
+    } catch (error) {
+      console.error(error);
+      window.alert('Sorry, something went wrong. Please email wedwow26@gmail.com directly.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -489,9 +527,9 @@ export default function App() {
                   />
                 </div>
 
-                <button className="form-submit" type="submit">
-                  SEND ENQUIRY
-                </button>
+                <button className="form-submit" type="submit" disabled={isSending}>
+  {isSending ? 'SENDING…' : 'SEND ENQUIRY'}
+</button>
                 <p className="form-note">
                   No spam. No commitment. Just a friendly quote from the Wedwow team.
                 </p>
