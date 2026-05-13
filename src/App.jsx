@@ -18,7 +18,7 @@ function Nav() {
       </Link>
 
       <div className="desktop-nav">
-  <a href="/#products">Products</a>
+  <a href="/#Home">Home</a>
   <a href="/#occasions">Occasions</a>
   <a href="/#how">How It Works</a>
   <a href="/#enquiry">Bulk Pricing</a>
@@ -43,7 +43,7 @@ function Nav() {
       {menuOpen && (
         <div className="mobile-nav-menu">
           <a href="/#products" onClick={closeMenu}>
-            Products
+            Home
           </a>
           <a href="/#occasions" onClick={closeMenu}>
             Occasions

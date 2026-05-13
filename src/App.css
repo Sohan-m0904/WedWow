@@ -1288,7 +1288,7 @@ footer {
     display: inline-block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    font-size: 1.55rem;
+    font-size: 1.85rem;
     letter-spacing: 0.07em;
   }
 
@@ -1301,7 +1301,7 @@ footer {
     visibility: visible !important;
     opacity: 1 !important;
     padding: 0.5rem 0.75rem;
-    font-size: 0.62rem;
+    font-size: 0.90rem;
     letter-spacing: 0.05em;
   }
 
@@ -1592,4 +1592,46 @@ footer {
   .product-custom-section {
     grid-template-columns: 1fr;
   }
+}
+
+/* FIX PRODUCT IMAGE BACKGROUNDS */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card .product-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  opacity: 0.45;
+  z-index: 0 !important;
+  pointer-events: none;
+}
+
+.product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.05) 0%,
+    rgba(10, 10, 10, 0.45) 45%,
+    rgba(10, 10, 10, 0.94) 100%
+  );
+}
+
+.product-card .card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.product-card .card-content {
+  position: relative !important;
+  z-index: 3 !important;
 }

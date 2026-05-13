@@ -12,57 +12,63 @@ const tickerItems = [
 ];
 
 const products = [
-  {
-    className: 'card-led featured',
-    tag: 'Bestseller',
-    title: (
-      <>
-        CUSTOM LED
-        <br />
-        SILICONE
-        <br />
-        BRACELET
-      </>
-    ),
-    description:
-      'Our flagship product. Fully customisable LED wristbands in any colour, with your logo, name or message printed or engraved. Available in flash, pulse and solid modes.',
-    arrow: 'Enquire for pricing →',
-    featured: true,
-  },
-  {
-    className: 'card-glasses',
-    icon: '🕶',
-    tag: 'Party Essential',
-    title: 'YELLOW FESTIVAL SUNGLASSES',
-    description:
-      'Bold yellow lenses. Unforgettable look. Perfect festival and wedding favour.',
-    arrow: 'Enquire →',
-  },
-  {
-    className: 'card-groom',
-    icon: '💍',
-    tag: 'Wedding',
-    title: 'TEAM BRIDE / TEAM GROOM WRISTBANDS',
-    description: 'Side-your-squad wristbands for the bridal party.',
-    arrow: 'Enquire →',
-  },
-  {
-    className: 'card-party',
-    icon: '🔴',
-    tag: 'Nightclub',
-    title: 'RED / GREEN NIGHTCLUB WRISTBANDS',
-    description:
-      'Crowd control made stylish. Instant visual signals for VIP, entry and bar access.',
-    arrow: 'Enquire →',
-  },
-  {
-    className: 'card-coming',
-    icon: '✦',
-    tag: 'Coming Soon',
-    title: 'MORE PRODUCTS DROPPING SOON',
-    description: "We're constantly expanding our range. Sign up to be notified first.",
-  },
-];
+    {
+      className: 'card-led featured',
+      image: '/products/bracelet.JPG',
+      imageAlt: 'Custom LED silicone bracelet',
+      tag: 'Bestseller',
+      title: (
+        <>
+          CUSTOM LED
+          <br />
+          SILICONE
+          <br />
+          BRACELET
+        </>
+      ),
+      description:
+        'Our flagship product. Fully customisable LED wristbands in any colour, with your logo, name or message printed or engraved. Available in flash, pulse and solid modes.',
+      arrow: 'Enquire for pricing →',
+      featured: true,
+    },
+    {
+      className: 'card-glasses',
+      image: '/products/mendhiglasses.png',
+      imageAlt: 'Yellow festival sunglasses',
+      tag: 'Party Essential',
+      title: 'YELLOW FESTIVAL SUNGLASSES',
+      description:
+        'Bold yellow lenses. Unforgettable look. Perfect festival and wedding favour.',
+      arrow: 'Enquire →',
+    },
+    {
+      className: 'card-groom',
+      image: '/products/team-bride-groom.jpg',
+      imageAlt: 'Team Bride and Team Groom wristbands',
+      tag: 'Wedding',
+      title: 'TEAM BRIDE / TEAM GROOM WRISTBANDS',
+      description: 'Side-your-squad wristbands for the bridal party.',
+      arrow: 'Enquire →',
+    },
+    {
+      className: 'card-party',
+      image: '/products/red-green-wristbands.jpg',
+      imageAlt: 'Red and green nightclub wristbands',
+      tag: 'Nightclub',
+      title: 'RED / GREEN NIGHTCLUB WRISTBANDS',
+      description:
+        'Crowd control made stylish. Instant visual signals for VIP, entry and bar access.',
+      arrow: 'Enquire →',
+    },
+    {
+      className: 'card-coming',
+      image: '/products/coming-soon.jpg',
+      imageAlt: 'More Wedwow products coming soon',
+      tag: 'Coming Soon',
+      title: 'MORE PRODUCTS DROPPING SOON',
+      description: "We're constantly expanding our range. Sign up to be notified first.",
+    },
+  ];
 
 const occasions = [
   {
@@ -289,30 +295,28 @@ export default function Home() {
         </div>
 
         <div className="products-grid">
-          {products.map((product) => (
-            <div
-              className={`product-card ${product.className}`}
-              key={typeof product.title === 'string' ? product.title : product.tag}
-            >
-              {product.featured ? (
-                <div className="featured-product-art" aria-hidden="true">
-                  <div className="mini-ring ring-a" />
-                  <div className="mini-ring ring-b" />
-                  <div className="mini-core">LED</div>
-                </div>
-              ) : (
-                <div className="card-bg">{product.icon}</div>
-              )}
-              <div className="card-glow" />
-              <div className="card-content">
-                <span className="card-tag">{product.tag}</span>
-                <div className="card-title">{product.title}</div>
-                <p className="card-desc">{product.description}</p>
-                {product.arrow && <span className="card-arrow">{product.arrow}</span>}
-              </div>
-            </div>
-          ))}
-        </div>
+  {products.map((product) => (
+    <div
+      className={`product-card ${product.className}`}
+      key={product.imageAlt || product.tag}
+    >
+      <img
+        className="product-image"
+        src={product.image}
+        alt={product.imageAlt}
+      />
+
+      <div className="card-glow"></div>
+
+      <div className="card-content">
+        <span className="card-tag">{product.tag}</span>
+        <div className="card-title">{product.title}</div>
+        <p className="card-desc">{product.description}</p>
+        {product.arrow && <span className="card-arrow">{product.arrow}</span>}
+      </div>
+    </div>
+  ))}
+</div>
       </section>
 
       <section id="occasions">
