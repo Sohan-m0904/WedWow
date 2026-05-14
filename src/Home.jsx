@@ -43,7 +43,7 @@ const products = [
     },
     {
       className: 'card-groom',
-      image: '/products/team-bride-groom.jpg',
+      image: '/products/wristbands.png',
       imageAlt: 'Team Bride and Team Groom wristbands',
       tag: 'Wedding',
       title: 'TEAM BRIDE / TEAM GROOM WRISTBANDS',
@@ -52,7 +52,7 @@ const products = [
     },
     {
       className: 'card-party',
-      image: '/products/red-green-wristbands.jpg',
+      image: '/products/nightclub.png',
       imageAlt: 'Red and green nightclub wristbands',
       tag: 'Nightclub',
       title: 'RED / GREEN NIGHTCLUB WRISTBANDS',
@@ -62,7 +62,7 @@ const products = [
     },
     {
       className: 'card-coming',
-      image: '/products/coming-soon.jpg',
+      image: '/products/comingsoon.png',
       imageAlt: 'More Wedwow products coming soon',
       tag: 'Coming Soon',
       title: 'MORE PRODUCTS DROPPING SOON',
